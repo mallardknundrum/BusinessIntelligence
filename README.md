@@ -1,5 +1,5 @@
 
-There is an issue with the packager that is run automatically from `react-native run-<*>`. You can work around it by killing that packager and running your own with `npm start` in the project root directory.
+The packager run automatically from `react-native run-<*>` will sometimes fail to find all necessary modules. Work around it by killing that packager and running your own with `npm start` in the project root directory.
 
 #### Some useful links:
 - https://facebook.github.io/react-native/docs/getting-started.html 
