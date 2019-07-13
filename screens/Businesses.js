@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, StyleSheet, View } from 'react-native';
+import { FlatList, Text, StyleSheet, View, Button, Alert } from 'react-native';
 import businessData from '../data.json';
 
 
@@ -21,7 +21,15 @@ export default class Businesses extends React.Component {
       <View style={styles.container}>
         <FlatList
           data={businessData}
-          renderItem={({item})=> <Text style={styles.item}>{item.name}</Text>}
+          renderItem={({item})=> 
+          <Button
+            style={styles.item}
+            onPress={() => {
+              Alert.alert("I was pressed");
+            }}
+            title={"Company Name: " + item.name}
+          />
+          }
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
