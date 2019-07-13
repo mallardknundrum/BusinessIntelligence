@@ -26,7 +26,10 @@ export default class Businesses extends React.Component {
           <Button
             style={styles.item}
             onPress={() => {
-              this.props.navigation.push('Profile')
+              this.props.navigation.push('Profile', {
+                itemId: item.id,
+                otherParam: item
+              });
 
 
               // this.props.navigation.dispatch(StackActions.reset({
