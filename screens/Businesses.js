@@ -1,6 +1,7 @@
 import React from 'react';
-import { FlatList, Text, StyleSheet, View, Button, Alert } from 'react-native';
+import { FlatList, Text, StyleSheet, View, Button } from 'react-native';
 import businessData from '../data.json';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 
 
@@ -25,7 +26,15 @@ export default class Businesses extends React.Component {
           <Button
             style={styles.item}
             onPress={() => {
-              Alert.alert("I was pressed");
+              this.props.navigation.push('Profile')
+
+
+              // this.props.navigation.dispatch(StackActions.reset({
+              //   index:0,
+              //   actions: [
+              //     NavigationActions.navigate({ routeName: 'Profile'})
+              //   ]
+              // }))
             }}
             title={"Company Name: " + item.name}
           />
