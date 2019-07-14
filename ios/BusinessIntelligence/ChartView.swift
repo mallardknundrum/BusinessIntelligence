@@ -14,11 +14,7 @@ class ChartView: UIView {
   private let barChartView = BarChartView()
   @objc var dataDictionaries: NSDictionary = [:] {
     didSet {
-      var dictionary = [String: Any]()
-      for (key, value) in self.dataDictionaries {
-        dictionary[key as! String] = value
-      }
-      setBarChart(with: dictionary)
+      setBarChart(with: self.dataDictionaries)
     }
   }
   
@@ -41,7 +37,7 @@ class ChartView: UIView {
     self.addConstraints([top, bottom, leading, trailing])
   }
   
-  private func setBarChart(with jsonArray: [String: Any]) {
+  private func setBarChart(with jsonArray: NSDictionary) {
     let values = parseJSON(with: jsonArray)
     createDataSet(values: values.values)
     setUpFormatter(labels: values.dates)
@@ -84,7 +80,7 @@ class ChartView: UIView {
     barChartView.xAxis.labelRotationAngle = 90
   }
 
-  private func parseJSON(with jsonArray: [String: Any]) -> (dates: [String], values: [Int]) {
+  private func parseJSON(with jsonArray: NSDictionary) -> (dates: [String], values: [Int]) {
     guard let revenueDictionary = jsonArray["revenue"] as? [[String: Any]] else { return ([], []) }
     var dates: [String] = []
     var values: [Int] = []
