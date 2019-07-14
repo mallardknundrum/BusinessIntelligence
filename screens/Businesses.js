@@ -6,17 +6,6 @@ import { StackActions, NavigationActions } from 'react-navigation';
 
 
 export default class Businesses extends React.Component {
-
-  // constructor (props) {
-  //   super(props);
-  //   this.state = {
-  //     dataSource: [],
-  //   }
-  // }
-  // componentDidMount() {
-  //   console.log(businessData)
-  //   this.setState({dataSource: businessData})  
-  // }
   render() {
     return (
       <View style={styles.container}>
@@ -30,14 +19,6 @@ export default class Businesses extends React.Component {
                 itemId: item.id,
                 otherParam: item
               });
-
-
-              // this.props.navigation.dispatch(StackActions.reset({
-              //   index:0,
-              //   actions: [
-              //     NavigationActions.navigate({ routeName: 'Profile'})
-              //   ]
-              // }))
             }}
             title={"Company Name: " + item.name}
           />
