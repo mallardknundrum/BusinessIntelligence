@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, console } from 'react-native';
+import { View, Text, console, requireNativeComponent } from 'react-native';
+
+const ChartView = requireNativeComponent("ChartView")
 
 export default class BusinessDetail extends React.Component {
   render() {
@@ -9,7 +11,10 @@ export default class BusinessDetail extends React.Component {
 
     return (
     <View style={{flex: 1, justifyContent: 'center'}}>
-      <Text style={{fontSize: 45}}>{JSON.stringify(company)}</Text>
+      <View style={{flex: 1}}>
+        <Text style={{fontSize: 10}}>{JSON.stringify(company)}</Text>
+      </View>
+      <ChartView style={{flex: 3}}/>
     </View>);
   }
 }
