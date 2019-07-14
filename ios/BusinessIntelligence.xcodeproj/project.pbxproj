@@ -527,9 +527,7 @@
 				5CDBAE7A22DBD3D60015DEB2 /* BusinessIntelligence-Bridging-Header.h */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				5CDBAE7D22DBD3E50015DEB2 /* ChartView.swift */,
-				5CDBAE7B22DBD3E50015DEB2 /* ChartViewManager.m */,
-				5CDBAE7C22DBD3E50015DEB2 /* ChartViewManager.swift */,
+				5C1816A922DBEEB700844DC5 /* ChartsModule */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = BusinessIntelligence;
@@ -567,6 +565,16 @@
 				A6C0FB4787BA47D3C0E17AF4 /* Pods_BusinessIntelligence.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C1816A922DBEEB700844DC5 /* ChartsModule */ = {
+			isa = PBXGroup;
+			children = (
+				5CDBAE7D22DBD3E50015DEB2 /* ChartView.swift */,
+				5CDBAE7B22DBD3E50015DEB2 /* ChartViewManager.m */,
+				5CDBAE7C22DBD3E50015DEB2 /* ChartViewManager.swift */,
+			);
+			name = ChartsModule;
 			sourceTree = "<group>";
 		};
 		5CD51EA622DAA1E30051639B /* Recovered References */ = {
