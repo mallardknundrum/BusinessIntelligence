@@ -12,7 +12,18 @@ import Charts
 class ChartView: UIView {
   
   let barChartView = BarChartView()
+//
   var dataEntry: [BarChartDataEntry] = []
+  @objc var dataDictionaries: NSDictionary = [:] {
+    didSet (newValue) {
+      print(newValue)
+      var dictionary = [String: Any]()
+      for (key, value) in self.dataDictionaries {
+        dictionary[key as! String] = value
+      }
+      setBarChart(with: dictionary)
+    }
+  }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError()
@@ -21,7 +32,6 @@ class ChartView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setUpChartsView(frame: frame)
-    setBarChart(with: (try! JSONSerialization.jsonObject(with: jsonData) as! [[String: Any]]))
   }
   
   func setUpChartsView(frame: CGRect) {
@@ -34,14 +44,14 @@ class ChartView: UIView {
     self.addConstraints([top, bottom, leading, trailing])
   }
   
-  func setBarChart(with jsonArray: [[String:Any]]) {
+  func setBarChart(with jsonArray: [String: Any]) {
     barChartView.noDataTextColor = .white
     barChartView.noDataText = "No Data Available."
     
     let values = parseJSON(with: jsonArray)
     
-    for i in 0..<jsonArray.count {
-      let dataPoint = BarChartDataEntry(x: Double(i), y: Double(values.1[i]))
+    for i in 0..<values.values.count {
+      let dataPoint = BarChartDataEntry(x: Double(i), y: Double(values.values[i]))
       dataEntry.append(dataPoint)
     }
     
@@ -52,7 +62,7 @@ class ChartView: UIView {
     chartDataset.colors = [UIColor.purple]
     
     let formatter = Formatter()
-    formatter.xAxisLabels = values.0
+    formatter.xAxisLabels = values.dates
     let xAxis = XAxis()
     xAxis.valueFormatter = formatter
     barChartView.xAxis.labelPosition = .bottom
@@ -64,15 +74,15 @@ class ChartView: UIView {
     barChartView.leftAxis.drawGridLinesEnabled = false
     barChartView.leftAxis.drawZeroLineEnabled = true
     barChartView.data = chartData
-    barChartView.extraRightOffset = 50.0
     barChartView.extraBottomOffset = 25.0
     barChartView.xAxis.labelRotationAngle = 90
   }
-  
-  func parseJSON(with jsonArray: [[String: Any]]) -> ([String], [Int]) {
+
+  func parseJSON(with jsonArray: [String: Any]) -> (dates: [String], values: [Int]) {
+    guard let revenueDictionary = jsonArray["revenue"] as? [[String: Any]] else { return ([], []) }
     var dates: [String] = []
     var values: [Int] = []
-    for item in jsonArray {
+    for item in revenueDictionary {
       guard let date = item["date"] as? String,
         let value = item["value"] as? Double else { break }
       dates.append(String(date.split(separator: " ")[0]))
