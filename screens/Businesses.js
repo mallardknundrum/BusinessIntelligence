@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, StyleSheet, View, Button } from 'react-native';
+import { FlatList, Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
 import businessData from '../data.json';
 import { StackActions, NavigationActions } from 'react-navigation';
 
@@ -23,24 +23,17 @@ export default class Businesses extends React.Component {
         <FlatList
           data={businessData}
           renderItem={({item})=> 
-          <Button
+          <TouchableOpacity
             style={styles.item}
             onPress={() => {
               this.props.navigation.push('Profile', {
                 itemId: item.id,
                 otherParam: item
               });
-
-
-              // this.props.navigation.dispatch(StackActions.reset({
-              //   index:0,
-              //   actions: [
-              //     NavigationActions.navigate({ routeName: 'Profile'})
-              //   ]
-              // }))
             }}
-            title={"Company Name: " + item.name}
-          />
+          >
+            <Text>{item.name}</Text>
+          </TouchableOpacity>
           }
           keyExtractor={(item, index) => index.toString()}
         />
