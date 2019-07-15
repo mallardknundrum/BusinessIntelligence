@@ -32,7 +32,9 @@ export default class Businesses extends React.Component {
               });
             }}
           >
-            <Text>{item.name}</Text>
+            <View style={styles.cellView}>
+             <Text style={styles.cellText}>{item.name}</Text>
+            </View>
           </TouchableOpacity>
           }
           keyExtractor={(item, index) => index.toString()}
@@ -45,11 +47,25 @@ export default class Businesses extends React.Component {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingTop: 22
+   paddingTop: 22,
+  //  backgroundColor: '#6857B2',
   },
   item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44
+    padding: 1,
+    height: 44,
   },
+  cellView: {
+    justifyContent: 'center',
+    borderRadius: 45,
+    borderWidth: 5,
+    borderStyle: 'solid',
+    backgroundColor: '#6857B2',
+    borderColor: '#B5F0EA',
+  },
+  cellText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: '#FFFFFF',
+  }
 })
